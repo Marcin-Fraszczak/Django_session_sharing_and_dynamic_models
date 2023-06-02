@@ -5,8 +5,10 @@ from django.urls import reverse_lazy
 from django.views import View
 from .forms import CustomUserCreationForm, CustomUserLoginForm
 import redis
+from os import getenv
 
-redis_db = redis.StrictRedis(host='localhost', port=6379)
+redis_host = getenv("redis_host", default="localhost")
+redis_db = redis.StrictRedis(host=redis_host, port=6379)
 
 User = get_user_model()
 

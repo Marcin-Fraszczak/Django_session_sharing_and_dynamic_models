@@ -1,13 +1,13 @@
-from flask import Flask, request, redirect, session, render_template
+from flask import Flask, request, render_template
 import redis
-from os import path
+from os import getenv
 
-# template_dir = path.abspath('./templates')
 app = Flask(__name__)
 
 app.secret_key = 'django-insecure-sp#slpf7#7o9+1#^y-tirwcug+-y&l_1($%evub1afjf0*z(=)'
 
-redis_db = redis.StrictRedis(host='localhost', port=6379)
+redis_host = getenv("redis_host", default="localhost")
+redis_db = redis.StrictRedis(host=redis_host, port=6379)
 
 dj_base = "http://127.0.0.1:8000"
 
@@ -35,4 +35,4 @@ def home_view():
 
 
 if __name__ == '__main__':
-	app.run()
+	app.run(host="0.0.0.0", port='5000')

@@ -1,0 +1,20 @@
+<nav class="navbar navbar-dark navbar-expand-md bg-dark shadow">
+  <div class="container-fluid w-75">
+    <a class="navbar-brand" href="{{ url_for('home_view')}}">This is Flask App</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav mx-auto">
+        {% if username and is_shared %}
+        <a class="nav-link" href="{{ logout }}">Log out</a>
+        {% else %}
+        <a class="nav-link me-5" href="{{ login }}">Log in</a>
+        <a class="nav-link" href="{{ register }}">Register</a>
+        {% endif %}
+      </div>
+      <a class="navbar-brand" href="{{ home }}">Go to Django App</a>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,32 @@
+{% extends '_base.html' %}
+
+{% block title %}
+Home
+{% endblock title %}
+
+{% block body %}
+
+{% if user.is_authenticated %}
+<h3 class="mb-3">Welcome <strong>{{user.username|upper}}</strong>!</h3>
+<h3 class="mb-5">Your session is already here.</h3>
+<h4>
+  You've chosen
+  <strong> {% if not is_shared %} NOT {% endif %} TO SHARE </strong>
+  this session with Flask.
+</h4>
+<h4>
+  <a class="btn btn-outline-secondary me-1" href="http://127.0.0.1:5000">Go to Flask App</a>
+  to verify your choice.
+</h4>
+
+{% else %}
+<h3 class="mb-3">You are not logged in.</h3>
+<h3> Choose
+  <a href="{% url 'accounts:login' %}" class="btn btn-outline-secondary mx-2">Log in</a>
+  or
+  <a href="{% url 'accounts:register' %}" class="btn btn-outline-secondary mx-2">Register</a>
+  from navbar.
+</h3>
+{% endif %}
+
+{% endblock body %}

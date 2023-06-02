@@ -1,0 +1,24 @@
+{% extends '_base.html' %}
+
+{% block body %}
+
+{% if username %}
+{% if is_shared %}
+<h3 class="mb-3">Welcome <strong>{{username|upper}}</strong>!</h3>
+<h3>Your session is already here, because you've chosen <strong>TO SHARE</strong> it with Django.</h3>
+{% else %}
+<h3>You have chosen <strong>NOT TO SHARE</strong> your session.</h3>
+<h3>You are not authenticated here.</h3>
+{% endif %}
+{% else %}
+<h3 class="mb-3">You are not logged in.</h3>
+<h3>
+  Choose
+  <a href="{{ login }}" class="btn btn-outline-secondary mx-2">Log in</a>
+  
+  or
+  <a href="{{ register }}" class="btn btn-outline-secondary mx-2">Register</a>
+  from navbar.
+</h3>
+{% endif %}
+{% endblock body %}

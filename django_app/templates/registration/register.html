@@ -1,0 +1,25 @@
+{% extends '_forms.html' %}
+
+{% block title %}
+Register
+{% endblock title %}
+
+{% block form %}
+<h2 class="mb-2">Register</h2>
+<form method="post">
+  {%csrf_token%}
+  <input type="text" name="username" placeholder="username..." required class="form-control my-2">
+  <input type="password" name="password1" placeholder="password won't be validated, don't sweat it..." required class="form-control my-2">
+  <div class="form-check form-switch mx-4 d-flex">
+    <input class="form-check-input me-3" type="checkbox" name="shared" id="shared-session" checked>
+    <label class="form-check-label" for="shared-session">Share session with Flask</label>
+  </div>
+  <button class="btn btn-primary mt-2 w-100">Register</button>
+  
+  {% if form.errors %}
+  {% for field, error in form.errors.items %}
+  <div>{{error}}</div>
+  {% endfor %}
+  {% endif %}
+</form>
+{% endblock form %}

@@ -18,3 +18,12 @@ after finishing.
 
 
 4) Alternatively you can type `docker compose up` yourself and manually navigate to http://localhost:8000
+
+
+## How it works?
+
+Django app is responsible for session management, user registration, login, logout.
+
+Client gets only session id in a cookie while the rest is saved to Redis database.
+
+Both Django and Flask are checking client's cookie and look for particular entry in Redis.

@@ -11,3 +11,10 @@ done
 
 # open the browser window
 open http://localhost:8000
+
+echo "====================================================="
+echo "Superuser created:"
+echo "username: admin"
+echo "password: admin"
+echo "Or you can register any new user."
+echo "====================================================="

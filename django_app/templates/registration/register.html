@@ -8,7 +8,7 @@ Register
 <h2 class="mb-2">Register</h2>
 <form method="post">
   {%csrf_token%}
-  <input type="text" name="username" placeholder="username, min 2 characters..." required class="form-control my-2">
+  <input type="text" name="username" placeholder="username..." required class="form-control my-2">
   <input type="password" name="password1" placeholder="password can be weak, don't sweat it..." required class="form-control my-2">
   <div class="form-check form-switch mx-4 d-flex">
     <input class="form-check-input me-3" type="checkbox" name="shared" id="shared-session" checked>

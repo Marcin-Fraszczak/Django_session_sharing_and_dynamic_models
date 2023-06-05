@@ -1,6 +1,7 @@
 asgiref==3.7.2
 async-timeout==4.0.2
 Django==4.2.1
+django-dynamic-model==0.3.0
 redis==4.5.5
 sqlparse==0.4.4
 typing_extensions==4.6.3

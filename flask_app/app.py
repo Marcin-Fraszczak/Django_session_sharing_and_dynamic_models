@@ -18,7 +18,7 @@ def home_view():
 	try:
 		username = redis_db.get(session_key).decode('utf-8')
 		is_shared = int(redis_db.get(f"{session_key}_shared").decode('utf-8'))
-	except (redis.exceptions.DataError, AttributeError):
+	except (redis.exceptions.DataError, AttributeError) as e:
 		username, is_shared = None, None
 	ctx = {
 		"username": username,
@@ -28,8 +28,6 @@ def home_view():
 		"register": f"{dj_base}/accounts/register",
 		"home": f"{dj_base}"
 	}
-	# if not (session_key and username):
-	# 	return redirect(ctx['login'])
 
 	return render_template('home.html', **ctx)
 

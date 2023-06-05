@@ -17,7 +17,7 @@ This script will run docker compose and open the app in the browser when ready.
 after finishing.
 
 
-4) Alternatively you can type `docker compose up` yourself and manually navigate to http://localhost:8000
+4) Alternatively you can type `docker compose up` yourself and manually navigate to http://localhost:5000
 
 
 5) Both methods will create ready-to-use superuser account with credentials:
@@ -27,6 +27,8 @@ username: `admin`
 password: `admin`
 
 email: `admin@admin.com`
+
+6) You can navigate to Create Dynamic Models section to create Django model from user input.
 
 ## How it works?
 

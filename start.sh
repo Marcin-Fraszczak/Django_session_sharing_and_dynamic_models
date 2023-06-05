@@ -11,8 +11,8 @@ while ! curl --fail --silent --head http://localhost:5000; do
 done
 
 # open the browser window
-#open http://localhost:5000
-echo "visit http://localhost:5000"
+open http://localhost:5000
+#echo "visit http://localhost:5000"
 
 echo "====================================================="
 echo "Superuser created:"

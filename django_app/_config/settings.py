@@ -36,8 +36,11 @@ INSTALLED_APPS = [
 	'django.contrib.sessions',
 	'django.contrib.messages',
 	'django.contrib.staticfiles',
-
+	# 3rd party apps
+	'dynamic_models',
+	# local apps
 	'accounts.apps.AccountsConfig',
+	'dynamo.apps.DynamoConfig',
 ]
 
 MIDDLEWARE = [
@@ -123,3 +126,9 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 
 LOGIN_REDIRECT_URL = 'accounts:home'
 LOGOUT_REDIRECT_URL = 'accounts:home'
+
+
+DYNAMIC_MODELS = {
+	"DEFAULT_CHARFIELD_MAX_LENGTH": 255,
+	"USE_APP_LABEL": "dynamo"
+}

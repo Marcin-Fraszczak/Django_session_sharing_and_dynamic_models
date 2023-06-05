@@ -1,0 +1,25 @@
+{% extends "_base.html" %}
+{% load static %}
+
+{% block title %}
+Create Model
+{% endblock title %}
+
+{% block body %}
+<h2>Create Dynamic Model</h2>
+<form method="post" novalidate>
+  {% csrf_token %}
+  <div class="input-group my-3">
+    <input type="text" name="model_name" placeholder="model name..." required class="form-control form-control-lg">
+    <button id="add_field" type="button" class="btn btn-primary">Add field</button>
+  </div>
+  <div id="form-list">
+  
+  </div>
+  
+  <button type="submit" class="btn btn-success my-2">Submit</button>
+</form>
+
+
+<script src="{% static 'dynamo/js/dynamo.js' %}"></script>
+{% endblock body %}

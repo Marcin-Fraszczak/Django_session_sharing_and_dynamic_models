@@ -1,10 +1,10 @@
-{% extends '_forms.html' %}
+{% extends '_base.html' %}
 
 {% block title %}
 Register
 {% endblock title %}
 
-{% block form %}
+{% block body %}
 <h2 class="mb-2">Register</h2>
 <form method="post">
   {%csrf_token%}
@@ -22,4 +22,4 @@ Register
   {% endfor %}
   {% endif %}
 </form>
-{% endblock form %}
+{% endblock body %}

@@ -23,14 +23,6 @@
           <div class="card-body p-5 text-center">
             {% block body %}
             {% endblock body %}
-            
-            {% if messages %}
-            <ul class="mt-3">
-              {% for message in messages %}
-              <li>{{message}}</li>
-              {% endfor %}
-            </ul>
-            {% endif %}
           </div>
         </div>
       </div>
@@ -38,6 +30,9 @@
   </div>
 </section>
 
+{% block msg %}
+{% include 'messages.html' %}
+{% endblock msg %}
 
 </body>
 </html>

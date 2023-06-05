@@ -1,15 +1,15 @@
-{% extends '_forms.html' %}
+{% extends '_base.html' %}
 
 {% block title %}
 Log In
 {% endblock title %}
 
-{% block form %}
+{% block body %}
 <h2 class="mb-2">Log In</h2>
 <form method="post">
   {%csrf_token%}
   <input type="text" name="username" placeholder="username..." required class="form-control my-2">
-  <input type="password" name="password" placeholder="password won't be validated, don't sweat it..." required class="form-control my-2">
+  <input type="password" name="password" placeholder="password can be weak, don't sweat it..." required class="form-control my-2">
   <div class="form-check form-switch mx-4 d-flex">
     <input class="form-check-input me-3" type="checkbox" name="shared" id="shared-session" checked>
     <label class="form-check-label" for="shared-session">Share session with Flask</label>
@@ -22,4 +22,4 @@ Log In
   {% endfor %}
   {% endif %}
 </form>
-{% endblock form %}
+{% endblock body %}

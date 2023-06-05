@@ -6,6 +6,7 @@ from django.views import View
 from .forms import CustomUserCreationForm, CustomUserLoginForm
 import redis
 from os import getenv
+from django.apps import apps
 
 redis_host = getenv("redis_host", default="localhost")
 redis_db = redis.StrictRedis(host=redis_host, port=6379)
@@ -49,6 +50,7 @@ class RegisterView(View):
 				login(request, user)
 				session_key = getattr(request.session, "_session_key")
 				set_redis(session_key, username, is_shared)
+				messages.success(request, "Successfully created new account.")
 				return redirect("accounts:home")
 			else:
 				messages.error(request, "User with that username already exists.")

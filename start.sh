@@ -2,7 +2,7 @@
 
 # start the container stack
 # (assumes the caller has permission to do this)
-docker-compose build --no-cache
+#docker-compose build --no-cache
 docker compose up
 
 # wait for the service to be ready
